@@ -10,8 +10,16 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+model Pokemon {
+  id     String   @id @default(uuid())
+  height Int?
+  name   String   @unique
+  Images Image[]
+}
+
+model Image {
+  id        String   @id @default(uuid())
+  pokemonId String
+  pokemon   Pokemon? @relation(fields: [pokemonId], references: [id])
+  url       String
 }
