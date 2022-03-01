@@ -12,7 +12,7 @@ export class CreatePokemonHandler
     console.log('Co', command);
     return await this.prisma.pokemon.create({
       data: {
-        name: 'sfaf',
+        ...command.pokemon,
       },
     });
   }

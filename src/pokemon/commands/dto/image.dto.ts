@@ -8,4 +8,3 @@ export class ImageDto implements Prisma.ImageUncheckedCreateInput {
   name!: string;
   Images?: [];
 }
- 

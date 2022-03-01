@@ -1,8 +1,14 @@
+import { IsInt, IsOptional, IsString } from 'class-validator';
 import { Prisma } from '@prisma/client';
 
-export class CreatePokemonDto implements Prisma.PokemonUncheckedCreateInput {
-  id?: string | undefined;
-  height?: number;
+export class CreatePokemonDto {
+  @IsString()
   name!: string;
-  Images?: [];
+
+  @IsInt()
+  @IsOptional()
+  height?: number | null;
+
+  @IsOptional()
+  images?: Prisma.ImageUncheckedCreateNestedManyWithoutPokemonInput;
 }
