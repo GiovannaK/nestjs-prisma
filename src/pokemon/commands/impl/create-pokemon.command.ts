@@ -1,3 +1,5 @@
-import { CreatePokemonDto } from 'src/pokemon/dto/Pokemon.dto';
+import { CreatePokemonDto } from '../dto/Pokemon.dto';
 
-export class CreatePokemonCommand {}
+export class CreatePokemonCommand {
+  constructor(public readonly pokemon: CreatePokemonDto) {}
+}

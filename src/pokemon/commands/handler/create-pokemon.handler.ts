@@ -1,14 +1,19 @@
 import { CommandHandler, ICommandHandler } from '@nestjs/cqrs';
-import { Pokemon } from '@prisma/client';
-import { CreatePokemonDto } from 'src/pokemon/dto/Pokemon.dto';
+import { PrismaService } from 'src/prisma/prisma.service';
 import { CreatePokemonCommand } from '../impl/create-pokemon.command';
 
 @CommandHandler(CreatePokemonCommand)
 export class CreatePokemonHandler
   implements ICommandHandler<CreatePokemonCommand>
 {
+  constructor(private readonly prisma: PrismaService) {}
+
   async execute(command: CreatePokemonCommand) {
-    const newPokemon = { ...CreatePokemonDto };
-    return await newPokemon;
+    console.log('Co', command);
+    return await this.prisma.pokemon.create({
+      data: {
+        name: 'sfaf',
+      },
+    });
   }
 }
